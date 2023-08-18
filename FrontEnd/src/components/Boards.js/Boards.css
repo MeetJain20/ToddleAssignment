@@ -17,10 +17,11 @@
 .colorofboard {
   width: 80px;
   height: 80px;
-  border-radius: 10px 0px 0px 10px;
+  cursor: pointer;
 }
 .nameofboard {
   margin-left: 1.5rem;
+  cursor: pointer;
 }
 
 .tempppcontain {
@@ -29,6 +30,10 @@
   width: 72%;
   justify-content: space-between;
   align-items: center;
+}
+
+.optionsbutton {
+  cursor: pointer;
 }
 
 .functionality {

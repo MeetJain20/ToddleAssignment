@@ -1,18 +1,27 @@
 import React from 'react';
 import "./Boards.css";
 import Threedots from "../../assets/DotsVerticalOutlined.svg";
-import Editlogo from "../../assets/PencilLineOutlined.svg";
-import Deletelogo from "../../assets/Delete.svg";
+import { useNavigate } from 'react-router-dom';
+// import Editlogo from "../../assets/PencilLineOutlined.svg";
+// import Deletelogo from "../../assets/Delete.svg";
 
 const Boards = (props) => {
+    const navigate = useNavigate();
     const { color, name } = props;
+    const handlePosts = () => {
+        const values = {
+            title: name,
+            color: color,
+        };
+        navigate('/post', { state: values });
+    }
     return (
         <>
             <div className="boarddetailsss">
-                <div className="colorofboard" style={{ backgroundColor: `var(--${color})` }}>
+                <div className="colorofboard" style={{ backgroundColor: `var(--${color})` }} onClick={handlePosts}>
                 </div>
                 <div className="tempppcontain">
-                    <div className="nameofboard">
+                    <div className="nameofboard" onClick={handlePosts}>
                         {name}
                     </div>
                     <img src={Threedots} alt="Three_dots" className="optionsbutton" />

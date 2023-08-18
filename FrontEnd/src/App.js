@@ -6,13 +6,15 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Post from "./components/Post/Post";
 const App = () => {
   return (
     <div>
       <Router>
-        <Navbar />
         <Routes>
           <Route exact path="/" element={<Dashboard />}
+          ></Route>
+          <Route exact path="/post" element={<Post />}
           ></Route>
         </Routes>
       </Router>

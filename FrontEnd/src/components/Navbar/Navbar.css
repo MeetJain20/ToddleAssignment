@@ -6,6 +6,12 @@
   border-bottom: 1px solid var(--border-color);
 }
 
+.leftarrowicon {
+  position: relative;
+  left: 70px;
+  cursor: pointer;
+}
+
 .navbar__title {
   margin-right: auto;
   font-size: 17px;
@@ -53,6 +59,40 @@
   border-radius: 6px;
 }
 
+.searchbarr2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 11px 3px 11px 3px;
+  color: var(--icon-color);
+}
+
+.leftcorner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.savelogo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 11px 3px 11px 3px;
+  color: var(--icon-color);
+}
+
+.divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  right: 21.5px;
+  padding: 11px 3px 11px 3px;
+  color: var(--icon-color);
+
+  /* padding: 10px 3px 10px 3px; */
+}
+
 .searchiconnnnn {
   font-size: 18px;
   margin-right: 10px;
@@ -64,6 +104,11 @@
 }
 
 .titleeeee {
-  color: #717171;
+  color: var(--logo-color);
   font-weight: 600;
+}
+
+.titleeeee2 {
+  color: var(--post-head);
+  font-weight: 700;
 }
