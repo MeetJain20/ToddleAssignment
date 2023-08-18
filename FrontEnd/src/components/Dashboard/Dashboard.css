@@ -1,0 +1,13 @@
+@import url("../../App.css");
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 1rem 3rem 1rem 3rem;
+}
+
+.headboards {
+  font-weight: 700;
+  font-size: 32px;
+}

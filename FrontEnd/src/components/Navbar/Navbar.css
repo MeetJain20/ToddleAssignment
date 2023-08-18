@@ -1,0 +1,69 @@
+@import url("../../App.css");
+
+.navbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 17px;
+  margin-left: 71px;
+  font-style: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbar__title > img {
+  padding: 0px 10px;
+}
+
+.navbar__item {
+  padding: 10px 30px 10px 0px;
+
+  /* vertical-align: middle; */
+}
+.newboardbuttt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 14px 10px 14px;
+  background-color: var(--add-board);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.addlogooo {
+  margin-right: 5px;
+}
+
+.searchbarrrr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  padding: 10px 14px 10px 14px;
+  margin-right: 2rem;
+  border-radius: 6px;
+}
+
+.searchiconnnnn {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.inputboxxx {
+  border: none;
+  font-size: 14px;
+}
+
+.titleeeee {
+  color: #717171;
+  font-weight: 600;
+}

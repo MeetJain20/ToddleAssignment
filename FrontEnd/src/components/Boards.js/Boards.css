@@ -1,0 +1,65 @@
+.allboards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+}
+.boarddetailsss {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  width: 350px;
+  margin-right: 2rem;
+  border-radius: 10px;
+}
+
+.colorofboard {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px 0px 0px 10px;
+}
+.nameofboard {
+  margin-left: 1.5rem;
+}
+
+.tempppcontain {
+  display: flex;
+  flex-direction: row;
+  width: 72%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.functionality {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ebebeb;
+  padding: 12px;
+  position: relative;
+  top: 80px;
+  left: 75px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  background-color: white;
+}
+
+.editbutton,
+.deletebutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.editicon,
+.deleteicon {
+  margin-right: 0.4rem;
+}
+
+.deletename {
+  color: var(--add-board);
+}
+/* .iconoption {
+  float: right;
+} */
