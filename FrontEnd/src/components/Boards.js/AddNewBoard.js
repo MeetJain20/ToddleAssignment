@@ -108,7 +108,7 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
             </div>
             <div className="addboardbuttonn">
                 <button className="addboardbuttonnew" onClick={addnewboardHandler}>
-                    {boardDetails === "" ? "Create board" : "Edit Board"}
+                    {!boardDetails ? "Create board" : "Edit Board"}
                 </button>
             </div>
         </div>

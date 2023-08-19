@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./Boards.css";
 import Threedots from "../../assets/DotsVerticalOutlined.svg";
 import { useNavigate } from 'react-router-dom';
@@ -10,13 +10,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Boards = (props) => {
     const dispatch = useDispatch();
-
+    const clickBoxRef = useRef(null);
     const { color, name, postsArr, boardid } = props;
-    console.log(boardid);
-    // const boardsData = useSelector((state) => state.board);
     const boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === boardid)
     );
+
+
     const [funccss, setFunccss] = useState("none");
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
@@ -52,6 +52,21 @@ const Boards = (props) => {
         };
         navigate('/post', { state: values });
     }
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (clickBoxRef.current && !clickBoxRef.current.contains(event.target)) {
+                // Clicked outside the box
+                setFunccss("none");
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     return (
         <>
             <div className="boarddetailsss">
@@ -63,7 +78,7 @@ const Boards = (props) => {
                     </div>
                     <img src={Threedots} alt="Three_dots" className="optionsbutton" onClick={functionalityHandler} />
                 </div>
-                <div className="functionality" style={{ display: `${funccss}` }}>
+                <div className="functionality" style={{ display: `${funccss}` }} ref={clickBoxRef}>
                     <div className="editbutton" onClick={() => {
                         openModal()
                         setFunccss("none");

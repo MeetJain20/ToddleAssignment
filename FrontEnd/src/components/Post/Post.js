@@ -12,18 +12,30 @@ import Postcard from './Postcard';
 
 const Post = () => {
     const location = useLocation();
+    const isbookmark = useSelector((state) => state.isbookmarked);
+    const searchvalue = useSelector((state) => state.searchtext2);
+    console.log(searchvalue);
     const values = location.state;
-    const boardDetails = useSelector(state =>
+    let boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === values.boardid)
     );
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
+    const filteredPosts = boardDetails.posts.filter(post =>
+        post.title.toLowerCase().includes(searchvalue.toLowerCase())
+    );
+    // if (isbookmark) {
+    //     boardDetails = boardDetails.posts.filter(post => post.bookmarked);
+    //     console.log("jainnnnn", boardDetails)
+    // }
+
+
     // console.log(values.posts);
 
     return (
         <>
-            <NavBar headtitle={values.title} />
+            <NavBar headtitle={isbookmark ? "Your Bookmarks" : values.title} />
             <div className="containpost" style={{ backgroundColor: `var(--${values.color})` }}>
 
                 {boardDetails.posts.length === 0 ? (<><div className="tempcontainpost">
@@ -55,13 +67,20 @@ const Post = () => {
                                 Create new posts
                             </button>
                         </div>
-                        <div className="postcarddetails">
-                            {boardDetails.posts.map((post) => {
+
+                        {isbookmark ? <div className="postcarddetails">
+                            {filteredPosts.filter(post => post.bookmarked).map((post) => {
                                 return (
                                     <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} bookmarked={post.bookmarked} />
                                 )
                             })}
-                        </div></>
+                        </div> : <div className="postcarddetails">
+                            {filteredPosts.map((post) => {
+                                return (
+                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} bookmarked={post.bookmarked} />
+                                )
+                            })}
+                        </div>}</>
                 )}
                 <Modal isOpen={modalOpen} onClose={closeModal}>
                     <AddNewPost boardid={values.boardid} type="addnewpost" titlee="" descriptionn="" closeModal={closeModal} />

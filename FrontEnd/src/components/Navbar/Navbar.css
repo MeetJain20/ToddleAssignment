@@ -22,6 +22,10 @@
   align-items: center;
 }
 
+input:focus {
+  outline: none;
+}
+
 .navbar__title > img {
   padding: 0px 10px;
 }
@@ -111,4 +115,42 @@
 .titleeeee2 {
   color: var(--post-head);
   font-weight: 700;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.search-icon {
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 6px;
+}
+
+.search-input {
+  overflow: hidden;
+  height: 0;
+  transition: height 0.4s;
+}
+
+.search-input.active {
+  height: 35px;
+}
+
+.search-input input {
+  width: 180px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  margin-top: 2px;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.search-input.active input {
+  width: 200px;
 }

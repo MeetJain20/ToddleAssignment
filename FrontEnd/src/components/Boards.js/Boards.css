@@ -27,6 +27,8 @@
 .nameofboard {
   margin-left: 1.5rem;
   cursor: pointer;
+  word-wrap: break-word;
+  width: 80%;
 }
 
 .tempppcontain {
