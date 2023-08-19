@@ -1,0 +1,103 @@
+@import url("../../App.css");
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 18%;
+  width: 18%;
+  background-color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  height: fit-content;
+  position: relative;
+}
+
+.cardtop {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  width: 82%;
+}
+
+.savetocollection {
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.editpostdetails {
+  margin-top: 4px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.post-muted-text {
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.post-image {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.post-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.post-description {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.linedivvv {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ebebeb;
+}
+
+.likebutton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+
+.likecount {
+  margin-left: 5px;
+  color: var(--icon-color);
+}
+
+/* .liked {
+  color: var(--heart-color);
+}
+.notliked {
+  color: var(--icon-color);
+} */
+
+.functionality2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ebebeb;
+  padding: 12px;
+  position: absolute;
+  left: 230px;
+  top: 45px;
+  width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  background-color: white;
+  z-index: 998;
+}

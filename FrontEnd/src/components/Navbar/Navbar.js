@@ -8,10 +8,12 @@ import AddNewBoard from "../Boards.js/AddNewBoard";
 import Savelogo from "../../assets/Savelogo.svg";
 import Leftarrow from "../../assets/Leftarrow.svg";
 import { useNavigate } from "react-router";
+// import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
     const { headtitle } = props;
     const [modalOpen, setModalOpen] = useState(false);
+    // const boardsData = useSelector((state) => state.board);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
     const navigate = useNavigate();
@@ -55,15 +57,14 @@ const NavBar = (props) => {
                         <div className="divider">
                             |
                         </div>
-                        <div className="savelogo">
+                        <div className="savelogo" >
                             <img src={Savelogo} alt="save_logo" />
                         </div>
                     </div>
-
                 )}
             </div>
             <Modal isOpen={modalOpen} onClose={closeModal}>
-                <AddNewBoard />
+                <AddNewBoard titlee="" colorr="blue" type="addnewboard" closeModal={closeModal} />
             </Modal>
         </header>
     );

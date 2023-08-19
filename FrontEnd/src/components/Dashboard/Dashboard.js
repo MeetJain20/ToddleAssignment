@@ -1,13 +1,12 @@
 import React from 'react'
 import "./Dashboard.css";
-import BoardsDetail from '../../details/boards';
-
 import Boards from '../Boards.js/Boards';
 import { useSelector } from 'react-redux';
 import NavBar from '../Navbar/Navbar';
 
 const Dashboard = () => {
-    const data = useSelector((state) => state.board);
+    // const data = useSelector((state) => state.board);
+    const boardsData = useSelector((state) => state.board);
     return (
         <>
             <NavBar headtitle="toddle" />
@@ -17,11 +16,9 @@ const Dashboard = () => {
                         My boards
                     </div>
                     <div className="allboards">
-                        {data.map((element) => {
-                            return (
-                                <Boards color={element.color} name={element.name} />
-                            )
-                        })}
+                        {Object.values(boardsData).map((board) => (
+                            <Boards boardid={board.boardid} color={board.color} name={board.title} postsArr={board.posts} />
+                        ))}
                     </div>
                 </div>
             </div>

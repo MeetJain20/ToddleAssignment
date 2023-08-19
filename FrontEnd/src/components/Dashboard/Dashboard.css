@@ -11,3 +11,9 @@
   font-weight: 700;
   font-size: 32px;
 }
+
+.allboards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

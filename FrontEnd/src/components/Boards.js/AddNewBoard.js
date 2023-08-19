@@ -2,62 +2,111 @@ import React, { useState } from 'react';
 import "./AddNewBoard.css";
 import BoardsDetail from '../../details/boards';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-const AddNewBoard = () => {
-    const [color, setColor] = useState("blue");
-    const [title, setTitle] = useState("");
+const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
+    const boardDetails = useSelector(state =>
+        state.board.find(board => board.boardid === boardid)
+    );
+
+    const [color, setColor] = useState(colorr);
+    const [title, setTitle] = useState(titlee);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const colorsArr = [
+        {
+            color: "blue",
+        },
+        {
+            color: "violet",
+        },
+        {
+            color: "pink",
+        },
+        {
+            color: "yellow",
+        }
+    ]
     // const closeModal = () => setModalOpen(false);
     const addnewboardHandler = () => {
-        dispatch({
-            type: 'ADD_NEW_BOARD', payload: {
-                id: BoardsDetail.length + 1,
-                name: title,
-                color: color
-            }
-        });
-        setTitle("");
-        setColor("");
-        const values = {
-            title: title,
-            color: color,
-        };
-        navigate("/post", { state: values })
-        // closeModal();
+        // const newBoardId = Object.keys(BoardsDetail).length + 1;
+        if (!boardDetails) {
+            const newBoard = {
+                boardid: Object.keys(BoardsDetail).length + 1,
+                title: title,
+                color: color,
+                posts: [],
+            };
+
+            dispatch({
+                type: 'ADD_NEW_BOARD',
+                payload: newBoard,
+            });
+            setTitle("");
+            setColor("");
+            const values = {
+                boardid: Object.keys(BoardsDetail).length + 1,
+                title: title,
+                color: color,
+                posts: []
+            };
+            navigate("/post", { state: values })
+        }
+        else {
+
+            const newBoard = {
+                boardid: boardDetails.boardid,
+                title: title,
+                color: color,
+            };
+
+            dispatch({
+                type: 'EDIT_BOARD',
+                payload: newBoard,
+            });
+        }
+        closeModal();
     }
     return (
-        <div className="containerr">
-            <div className="nameofnewboard">
-                Add a name for your board
-            </div>
-            <div className="newboardtitle">
-                <input type="text" className="newboardtitle1" placeholder="Add Title.." value={title} onChange={(e) => { setTitle(e.target.value) }} />
-            </div>
-            <div className="selectpostcolor">
+        <div className="containerBoard">
+            {titlee === "" ? <>
+                <div className="nameofnewboard">
+                    Add a name for your board
+                </div>
+
+                <div className="newboardtitle">
+                    <input type="text" className="newboardtitle1" placeholder="Add Title.." value={title} onChange={(e) => { setTitle(e.target.value) }} />
+                </div></>
+                : <><div className="nameofnewboard">
+                    Edit name for your board
+                </div><div className="newboardtitle">
+                        <input type="text" className="newboardtitle1" placeholder="Add Title.." value={title} onChange={(e) => { setTitle(e.target.value) }} />
+                    </div></>}
+
+            {colorr === "" ? <div className="selectpostcolor">
                 Select post colour
-            </div>
+            </div> : <div className="selectpostcolor">
+                Change post colour
+            </div>}
             <div className="mutedtext">
                 Here are some templates to get you started
             </div>
+
             <div className="coloroptions">
-                <div className="bluecolor" onClick={() => { setColor("blue") }} style={{ border: `2px solid ${color === "blue" ? "teal" : "white"}` }}>
-                </div>
 
-                <div className="violetcolor" onClick={() => { setColor("violet") }} style={{ border: `2px solid ${color === "violet" ? "teal" : "white"}` }}>
-                </div>
+                {colorsArr.map((element) => {
+                    return (<div key={element.color} className="colorsss" onClick={() => { setColor(element.color) }} style={{
+                        border: `2px solid ${color === element.color ? "teal" : "white"}`,
+                        backgroundColor: `var(--${element.color})`
+                    }}>
+                    </div>)
+                })}
 
-                <div className="pinkcolor" onClick={() => { setColor("pink") }} style={{ border: `2px solid ${color === "pink" ? "teal" : "white"}` }}>
-                </div>
-
-                <div className="yellowcolor" onClick={() => { setColor("yellow") }} style={{ border: `2px solid ${color === "yellow" ? "teal" : "white"}` }}>
-                </div>
             </div>
             <div className="addboardbuttonn">
                 <button className="addboardbuttonnew" onClick={addnewboardHandler}>
-                    Create board
+                    {boardDetails === "" ? "Create board" : "Edit Board"}
                 </button>
             </div>
         </div>

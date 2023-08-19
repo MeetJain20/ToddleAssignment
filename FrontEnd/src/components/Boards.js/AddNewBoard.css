@@ -1,4 +1,6 @@
-.containerr {
+@import url("../../App.css");
+
+.containerBoard {
   display: flex;
   flex-direction: column;
 }
@@ -40,10 +42,7 @@
   align-items: center;
 }
 
-.bluecolor,
-.violetcolor,
-.pinkcolor,
-.yellowcolor {
+.colorsss {
   border-radius: 50%;
   height: 24px;
   width: 24px;
@@ -51,7 +50,7 @@
   cursor: pointer;
 }
 
-.bluecolor {
+/* .bluecolor {
   background-color: var(--blue);
 }
 
@@ -63,7 +62,7 @@
 }
 .yellowcolor {
   background-color: var(--yellow);
-}
+} */
 
 .addboardbuttonn {
   display: flex;

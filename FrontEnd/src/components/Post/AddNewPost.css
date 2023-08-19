@@ -1,0 +1,103 @@
+@import url("../../App.css");
+
+.containerPost {
+  display: flex;
+  flex-direction: column;
+}
+
+.nameofnewpost {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.writeforpost {
+  font-weight: 500;
+  font-size: 14px;
+  color: #2b2b2b;
+  margin-top: 3px;
+}
+
+.subjectpost {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 2rem;
+  color: #393939;
+}
+
+.subjectforpost {
+  margin-top: 0.5rem;
+}
+
+.subjectinputpost {
+  border: 1px solid #dbdbdb;
+  padding: 15px;
+  border-radius: 5px;
+  width: 95%;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.imagelogo {
+  height: 20px;
+  width: 20px;
+}
+
+.addyourimage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 14px 10px 14px;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  margin-top: 2rem;
+  width: 35%;
+  color: var(--logo-color);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.addPict {
+  display: none;
+}
+
+.divideline {
+  border: 1px solid #ebebeb;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.postdesc {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.postdescription {
+  margin-top: 0.5rem;
+  padding: 13px 16px 13px 16px;
+  /* font-weight: 500; */
+  font-size: 16px;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+}
+/* .addnewimage {
+  padding: 10px 13px 10px 13px;
+  border: 1px solid var(--border-color);
+} */
+
+.addpostbuttonn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addpostbuttonnew {
+  border: none;
+  padding: 10px 14px 10px 14px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: var(--add-post);
+  margin-top: 2.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

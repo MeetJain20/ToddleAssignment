@@ -1,17 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Boards.css";
 import Threedots from "../../assets/DotsVerticalOutlined.svg";
 import { useNavigate } from 'react-router-dom';
-// import Editlogo from "../../assets/PencilLineOutlined.svg";
-// import Deletelogo from "../../assets/Delete.svg";
+import Editlogo from "../../assets/PencilLineOutlined.svg";
+import Deletelogo from "../../assets/Delete.svg";
+import AddNewBoard from './AddNewBoard';
+import Modal from '../ReUsable/Modal';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Boards = (props) => {
+    const dispatch = useDispatch();
+
+    const { color, name, postsArr, boardid } = props;
+    console.log(boardid);
+    // const boardsData = useSelector((state) => state.board);
+    const boardDetails = useSelector(state =>
+        state.board.find(board => board.boardid === boardid)
+    );
+    const [funccss, setFunccss] = useState("none");
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
     const navigate = useNavigate();
-    const { color, name } = props;
+    const functionalityHandler = () => {
+        if (funccss === "none") {
+            setFunccss("block");
+        }
+        else {
+            setFunccss("none");
+        }
+    }
+
+    const deleteboardHandler = () => {
+        const newBoard = {
+            boardId: boardDetails.boardid,
+        };
+
+        dispatch({
+            type: 'DELETE_BOARD',
+            payload: newBoard,
+        });
+        setFunccss("none");
+    }
+
     const handlePosts = () => {
         const values = {
+            boardid: boardid,
             title: name,
             color: color,
+            posts: postsArr
         };
         navigate('/post', { state: values });
     }
@@ -24,10 +61,13 @@ const Boards = (props) => {
                     <div className="nameofboard" onClick={handlePosts}>
                         {name}
                     </div>
-                    <img src={Threedots} alt="Three_dots" className="optionsbutton" />
+                    <img src={Threedots} alt="Three_dots" className="optionsbutton" onClick={functionalityHandler} />
                 </div>
-                {/* <div className="functionality">
-                    <div className="editbutton">
+                <div className="functionality" style={{ display: `${funccss}` }}>
+                    <div className="editbutton" onClick={() => {
+                        openModal()
+                        setFunccss("none");
+                    }}>
                         <div className="editicon">
                             <img src={Editlogo} alt="edit_logo" />
                         </div>
@@ -35,7 +75,7 @@ const Boards = (props) => {
                             Edit
                         </div>
                     </div>
-                    <div className="deletebutton">
+                    <div className="deletebutton" onClick={deleteboardHandler}>
                         <div className="deleteicon">
                             <img src={Deletelogo} alt="delete_logo" />
                         </div>
@@ -43,7 +83,10 @@ const Boards = (props) => {
                             Delete
                         </div>
                     </div>
-                </div> */}
+                </div>
+                <Modal isOpen={modalOpen} onClose={closeModal}>
+                    <AddNewBoard boardid={boardid} titlee={boardDetails.title} colorr={boardDetails.color} type="editBoard" closeModal={closeModal} />
+                </Modal>
             </div>
         </>
     )
