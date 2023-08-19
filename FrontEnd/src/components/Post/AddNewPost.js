@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react'
 import "./AddNewPost.css";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-const AddNewPost = ({ boardid, posts, closeModal }) => {
+const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn }) => {
 
-    const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
+    const [subject, setSubject] = useState(titlee);
+    const [description, setDescription] = useState(descriptionn);
     const fileRef = useRef(null);
     const [image1, setImage1] = useState(null);
     const onImageChange = async (event) => {
@@ -17,27 +17,54 @@ const AddNewPost = ({ boardid, posts, closeModal }) => {
         }
     };
     const dispatch = useDispatch();
+
+    const postDetails = useSelector(state => {
+        const boardDetails = state.board.find(board => board.boardid === boardid);
+        if (boardDetails) {
+            return boardDetails.posts.find(post => post.id === postid);
+        }
+        return null; // Post not found
+    });
     const navigate = useNavigate();
-
+    const boardDetails = useSelector(state =>
+        state.board.find(board => board.boardid === boardid)
+    );
     const addnewpostHandler = () => {
-        const newPostId = posts.length + 1;
 
-        const newPost = {
-            id: newPostId,
-            title: subject,
-            description: description,
-            img: "",
-            likecount: 0,
-            bookmarked: false,
-        };
+        const existingMaxPostId = Math.max(...boardDetails.posts.map(post => post.id), 0);
+        if (!postDetails) {
+            const newPostId = existingMaxPostId + 1;
+            console.log("alwergerg", newPostId);
+            const newPost = {
+                id: newPostId,
+                title: subject,
+                description: description,
+                img: "",
+                likecount: 0,
+                bookmarked: false,
+            };
 
-        dispatch({
-            type: 'ADD_NEW_POST',
-            payload: {
+            dispatch({
+                type: 'ADD_NEW_POST',
+                payload: {
+                    boardId: boardid,
+                    post: newPost,
+                },
+            });
+        }
+        else {
+            const newPost = {
                 boardId: boardid,
-                post: newPost,
-            },
-        });
+                postId: postid,
+                title: subject,
+                description: description,
+            };
+
+            dispatch({
+                type: 'EDIT_POST',
+                payload: newPost,
+            });
+        }
         closeModal();
     }
 
@@ -55,7 +82,7 @@ const AddNewPost = ({ boardid, posts, closeModal }) => {
             <div className="subjectforpost">
                 <input type="text" className="subjectinputpost" placeholder="Add Title.." value={subject} onChange={(e) => { setSubject(e.target.value) }} />
             </div>
-            <div className="addimagebox">
+            {titlee === "" ? <div className="addimagebox">
                 {/* <div className="imagelogo">
                     <img src={Imagelogo} alt="Image_logo" />
                 </div> */}
@@ -68,7 +95,7 @@ const AddNewPost = ({ boardid, posts, closeModal }) => {
                     />
                     Add your image
                 </label>
-            </div>
+            </div> : (<div></div>)}
             <div className="divideline"></div>
             <div className="postdesc">
                 What's on your mind?
@@ -79,7 +106,8 @@ const AddNewPost = ({ boardid, posts, closeModal }) => {
             />
             <div className="addpostbuttonn">
                 <button className="addpostbuttonnew" onClick={addnewpostHandler}>
-                    Publish
+                    {!subject ?
+                        "Publish" : "Edit Details"}
                 </button>
             </div>
         </div>

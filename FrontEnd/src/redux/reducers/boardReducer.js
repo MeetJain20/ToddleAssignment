@@ -15,6 +15,35 @@ const boardReducer = (state = initialState, action) => {
         case 'ADD_NEW_POST':
             const { boardId, post } = action.payload;
             return state.map(board => board.boardid === boardId ? { ...board, posts: [...board.posts, post] } : board)
+        case 'EDIT_POST':
+            const { boardId: editBoardId, postId: editPostId, title: newTitle, description: newDescription } = action.payload;
+            return state.map(board => {
+                console.log(newTitle, newDescription);
+                if (board.boardid === editBoardId) {
+                    const updatedPosts = board.posts.map(post => {
+                        if (post.id === editPostId) {
+                            return {
+                                ...post,
+                                title: newTitle,
+                                description: newDescription
+                            };
+                        }
+                        return post;
+                    });
+                    return { ...board, posts: updatedPosts };
+                }
+                return board;
+            });
+        case 'DELETE_POST':
+            const { boardId: delPostId, postId: deletePostId } = action.payload;
+            return state.map(board =>
+                board.boardid === delPostId
+                    ? {
+                        ...board,
+                        posts: board.posts.filter(post => post.id !== deletePostId),
+                    }
+                    : board
+            );
         case 'INCREMENT_LIKE':
             const { boardId: incrementBoardId, postId: incrementPostId } = action.payload;
             return state.map((board) =>

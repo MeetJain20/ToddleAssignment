@@ -17,9 +17,13 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
     const [flag1, setFlag1] = useState(1);
     const dispatch = useDispatch();
 
-    const boardDetails = useSelector(state =>
-        state.board.find(board => board.boardid === boardid)
-    );
+    const postDetails = useSelector(state => {
+        const boardDetails = state.board.find(board => board.boardid === boardid);
+        if (boardDetails) {
+            return boardDetails.posts.find(post => post.id === postid);
+        }
+        return null; // Post not found
+    });
     const [funccss, setFunccss] = useState("none");
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
@@ -34,11 +38,12 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
     }
     const deletepostHandler = () => {
         const newBoard = {
-            boardId: boardDetails.boardid,
+            boardId: boardid,
+            postId: postid
         };
 
         dispatch({
-            type: 'DELETE_BOARD',
+            type: 'DELETE_POST',
             payload: newBoard,
         });
         setFunccss("none");
@@ -135,7 +140,7 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
                 </div>
             </div>
             <Modal isOpen={modalOpen} onClose={closeModal}>
-                <AddNewPost postid={postid} type="editPost" closeModal={closeModal} />
+                <AddNewPost boardid={boardid} postid={postid} type="editPost" closeModal={closeModal} titlee={postDetails.title} descriptionn={postDetails.description} />
             </Modal>
         </div>
     );

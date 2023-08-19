@@ -13,8 +13,9 @@ import Postcard from './Postcard';
 const Post = () => {
     const location = useLocation();
     const values = location.state;
-    const boardsData = useSelector((state) => state.board);
-
+    const boardDetails = useSelector(state =>
+        state.board.find(board => board.boardid === values.boardid)
+    );
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
@@ -25,7 +26,7 @@ const Post = () => {
             <NavBar headtitle={values.title} />
             <div className="containpost" style={{ backgroundColor: `var(--${values.color})` }}>
 
-                {boardsData[values.boardid - 1].posts.length === 0 ? (<><div className="tempcontainpost">
+                {boardDetails.posts.length === 0 ? (<><div className="tempcontainpost">
                     <div className="toplefthead">
                         Your Posts
                     </div>
@@ -55,7 +56,7 @@ const Post = () => {
                             </button>
                         </div>
                         <div className="postcarddetails">
-                            {boardsData[Math.max(values.boardid - 1, 0)].posts.map((post) => {
+                            {boardDetails.posts.map((post) => {
                                 return (
                                     <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} bookmarked={post.bookmarked} />
                                 )
@@ -63,7 +64,7 @@ const Post = () => {
                         </div></>
                 )}
                 <Modal isOpen={modalOpen} onClose={closeModal}>
-                    <AddNewPost boardid={values.boardid} posts={values.posts} closeModal={closeModal} />
+                    <AddNewPost boardid={values.boardid} type="addnewpost" titlee="" descriptionn="" closeModal={closeModal} />
                 </Modal>
             </div>
         </>

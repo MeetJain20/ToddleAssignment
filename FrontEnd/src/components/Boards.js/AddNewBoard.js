@@ -31,9 +31,11 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
     // const closeModal = () => setModalOpen(false);
     const addnewboardHandler = () => {
         // const newBoardId = Object.keys(BoardsDetail).length + 1;
+        const existingMaxBoardId = Math.max(...BoardsDetail.map(board => board.boardid), 0);
+
         if (!boardDetails) {
             const newBoard = {
-                boardid: Object.keys(BoardsDetail).length + 1,
+                boardid: existingMaxBoardId + 1,
                 title: title,
                 color: color,
                 posts: [],
