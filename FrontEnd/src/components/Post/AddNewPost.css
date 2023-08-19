@@ -42,6 +42,20 @@
   width: 20px;
 }
 
+.addimagebox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tempimg1 {
+  height: 50px;
+  width: 50px;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+  border-radius: 5px;
+}
+
 .addyourimage {
   display: flex;
   flex-direction: row;

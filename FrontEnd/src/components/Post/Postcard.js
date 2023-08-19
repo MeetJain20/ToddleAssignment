@@ -128,7 +128,7 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
 
             {/* <p className="post-muted-text">Muted Text</p> */}
             <div className="post-image">
-                <img src="https://thumbs.dreamstime.com/b/spring-nature-scene-beautiful-landscape-tranquil-background-sunlight-scenic-beauty-meadow-backdrop-sunshine-green-grass-149811995.jpg" alt="Post" />
+                <img src={img} alt="Post" />
             </div>
             <p className="post-description">{description}</p>
             <div className="linedivvv"></div>

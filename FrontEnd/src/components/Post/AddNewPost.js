@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import "./AddNewPost.css";
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+
 
 const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn }) => {
 
     const [subject, setSubject] = useState(titlee);
     const [description, setDescription] = useState(descriptionn);
-    const fileRef = useRef(null);
+    // const fileRef = useRef(null);
     const [image1, setImage1] = useState(null);
-    const onImageChange = async (event) => {
+    const onImageChange = (event) => {
         // console.log("meet", event);
         event.preventDefault();
         if (event.target.files && event.target.files[0]) {
@@ -25,7 +25,7 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
         }
         return null; // Post not found
     });
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === boardid)
     );
@@ -39,7 +39,7 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
                 id: newPostId,
                 title: subject,
                 description: description,
-                img: "",
+                img: image1,
                 likecount: 0,
                 bookmarked: false,
             };
@@ -91,10 +91,14 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
                         type="file"
                         className="addPict"
                         onChange={onImageChange}
-                        ref={fileRef}
+                    // ref={fileRef}
                     />
                     Add your image
                 </label>
+                {image1 ?
+                    <div className="tempimg">
+                        <img src={image1} alt="selected_image" className="tempimg1" />
+                    </div> : (<div></div>)}
             </div> : (<div></div>)}
             <div className="divideline"></div>
             <div className="postdesc">
@@ -106,7 +110,7 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
             />
             <div className="addpostbuttonn">
                 <button className="addpostbuttonnew" onClick={addnewpostHandler}>
-                    {!subject ?
+                    {!postDetails ?
                         "Publish" : "Edit Details"}
                 </button>
             </div>
