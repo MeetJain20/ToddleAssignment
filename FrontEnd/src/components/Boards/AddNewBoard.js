@@ -28,9 +28,9 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
             color: "yellow",
         }
     ]
-    // const closeModal = () => setModalOpen(false);
+
     const addnewboardHandler = () => {
-        // const newBoardId = Object.keys(BoardsDetail).length + 1;
+
         const existingMaxBoardId = Math.max(...BoardsDetail.map(board => board.boardid), 0);
 
         if (!boardDetails) {

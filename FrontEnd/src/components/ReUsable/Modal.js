@@ -1,5 +1,5 @@
 import React from 'react';
-import './Modal.css'; // Import your CSS file for modal styles
+import './Modal.css';
 import Cross from "../../assets/Closeline.svg";
 
 const Modal = ({ isOpen, onClose, children }) => {

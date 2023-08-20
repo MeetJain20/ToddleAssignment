@@ -7,10 +7,8 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
 
     const [subject, setSubject] = useState(titlee);
     const [description, setDescription] = useState(descriptionn);
-    // const fileRef = useRef(null);
     const [image1, setImage1] = useState(null);
     const onImageChange = (event) => {
-        // console.log("meet", event);
         event.preventDefault();
         if (event.target.files && event.target.files[0]) {
             setImage1(URL.createObjectURL(event.target.files[0]));
@@ -23,9 +21,8 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
         if (boardDetails) {
             return boardDetails.posts.find(post => post.id === postid);
         }
-        return null; // Post not found
+        return null;
     });
-    // const navigate = useNavigate();
     const boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === boardid)
     );
@@ -80,7 +77,7 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
     return (
         <div className="containerPost">
             <div className="nameofnewpost">
-                Add a name for your board
+                {type === "addnewpost" ? "Create a post" : "Edit Post"}
             </div>
             <div className="writeforpost">
                 Write something for your post
@@ -92,15 +89,11 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
                 <input type="text" className="subjectinputpost" placeholder="Add Title.." value={subject} onChange={(e) => { setSubject(e.target.value) }} />
             </div>
             {titlee === "" ? <div className="addimagebox">
-                {/* <div className="imagelogo">
-                    <img src={Imagelogo} alt="Image_logo" />
-                </div> */}
                 <label className="addyourimage my-2">
                     <input
                         type="file"
                         className="addPict"
                         onChange={onImageChange}
-                    // ref={fileRef}
                     />
                     Add your image
                 </label>

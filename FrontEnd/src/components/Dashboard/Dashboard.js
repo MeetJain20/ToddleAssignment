@@ -8,7 +8,6 @@ const Dashboard = () => {
     const boardsData = useSelector((state) => state.board);
     const searchvalue = useSelector((state) => state.searchtext);
 
-    // Filter boards based on the search value
     const filteredBoards = Object.values(boardsData).filter(board => board.title.toLowerCase().includes(searchvalue.toLowerCase()));
 
     return (

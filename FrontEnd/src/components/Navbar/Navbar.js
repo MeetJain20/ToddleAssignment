@@ -10,13 +10,11 @@ import Bookmark from "../../assets/Bookmark.svg";
 import Leftarrow from "../../assets/Leftarrow.svg";
 import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
     const { headtitle } = props;
     const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
-    // const boardsData = useSelector((state) => state.board);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
     const navigate = useNavigate();
@@ -69,7 +67,7 @@ const NavBar = (props) => {
                                     const newSearchValue = e.target.value;
                                     dispatch({
                                         type: "SEARCH_TEXT_BOARD",
-                                        payload: newSearchValue  // Use payload instead of action
+                                        payload: newSearchValue
                                     });
                                 }}
                             />
@@ -79,10 +77,11 @@ const NavBar = (props) => {
                             <input type="text" placeholder="Search..."
                                 value={searchvalue1}
                                 onChange={(e) => {
-                                    const newSearchValue1 = e.target.value;
+                                    const newSearchValue1 =
+                                        e.target.value;
                                     dispatch({
                                         type: "SEARCH_TEXT_POST",
-                                        payload: newSearchValue1  // Use payload instead of action
+                                        payload: newSearchValue1
                                     });
                                 }} />
                         </div>

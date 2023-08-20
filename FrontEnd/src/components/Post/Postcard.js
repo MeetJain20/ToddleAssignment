@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./Postcard.css";
 import Savelogo from "../../assets/Savelogo.svg";
 import Threedots from "../../assets/DotsVerticalOutlined.svg";
@@ -16,13 +16,13 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
     const [flag, setFlag] = useState(1);
     const [flag1, setFlag1] = useState(1);
     const dispatch = useDispatch();
-
+    const clickBoxRef = useRef(null);
     const postDetails = useSelector(state => {
         const boardDetails = state.board.find(board => board.boardid === boardid);
         if (boardDetails) {
             return boardDetails.posts.find(post => post.id === postid);
         }
-        return null; // Post not found
+        return null;
     });
     const [funccss, setFunccss] = useState("none");
     const [modalOpen, setModalOpen] = useState(false);
@@ -70,7 +70,6 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
         setFlag1(!flag1);
     }
     const likeHandler = () => {
-        // console.log(boardid, postid);
         if (flag) {
             dispatch({
                 type: 'INCREMENT_LIKE',
@@ -91,6 +90,18 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
         }
         setFlag(!flag);
     }
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (clickBoxRef.current && !clickBoxRef.current.contains(event.target)) {
+                setFunccss("none");
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     return (
         <div className="post-card">
             <div className="cardtop">
@@ -104,7 +115,7 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
                     <img src={Threedots} alt="three_dots" />
                 </div>
             </div>
-            <div className="functionality2" style={{ display: `${funccss}` }}>
+            <div className="functionality2" style={{ display: `${funccss}` }} ref={clickBoxRef}>
                 <div className="editbutton" onClick={() => {
                     openModal()
                     setFunccss("none");
@@ -134,7 +145,6 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
             <div className="linedivvv"></div>
             <div className="likebutton">
                 {flag ? <img src={Heartlogo} alt="heart_logo" onClick={likeHandler} className="likebuttonheart" /> : <img src={ColorHeart} alt="heart_logo" onClick={likeHandler} className="likebuttonheart" />}
-
                 <div className="likecount" >
                     {likecount}
                 </div>

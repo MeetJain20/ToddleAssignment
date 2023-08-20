@@ -14,7 +14,6 @@ const Post = () => {
     const location = useLocation();
     const isbookmark = useSelector((state) => state.isbookmarked);
     const searchvalue = useSelector((state) => state.searchtext2);
-    console.log(searchvalue);
     const values = location.state;
     let boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === values.boardid)
@@ -26,13 +25,7 @@ const Post = () => {
     const filteredPosts = boardDetails.posts.filter(post =>
         post.title.toLowerCase().includes(searchvalue.toLowerCase())
     );
-    // if (isbookmark) {
-    //     boardDetails = boardDetails.posts.filter(post => post.bookmarked);
-    //     console.log("jainnnnn", boardDetails)
-    // }
 
-
-    // console.log(values.posts);
 
     return (
         <>
@@ -70,16 +63,16 @@ const Post = () => {
                         </div>
 
                         {isbookmark ? <div className="postcarddetails">
-                            {filteredPosts.filter(post => post.bookmarked).map((post) => {
+                            {filteredPosts.filter(post => post.bookmarked).map((post, postid) => {
                                 return (
-                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date}
+                                    <Postcard key={postid} boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date}
                                         bookmarked={post.bookmarked} />
                                 )
                             })}
                         </div> : <div className="postcarddetails">
-                            {filteredPosts.map((post) => {
+                            {filteredPosts.map((post, postid) => {
                                 return (
-                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date} bookmarked={post.bookmarked} />
+                                    <Postcard key={postid} boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date} bookmarked={post.bookmarked} />
                                 )
                             })}
                         </div>}</>

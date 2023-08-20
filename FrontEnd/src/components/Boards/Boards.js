@@ -55,7 +55,6 @@ const Boards = (props) => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (clickBoxRef.current && !clickBoxRef.current.contains(event.target)) {
-                // Clicked outside the box
                 setFunccss("none");
             }
         };

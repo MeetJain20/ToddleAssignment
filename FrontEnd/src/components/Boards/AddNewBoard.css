@@ -50,20 +50,6 @@
   cursor: pointer;
 }
 
-/* .bluecolor {
-  background-color: var(--blue);
-}
-
-.violetcolor {
-  background-color: var(--violet);
-}
-.pinkcolor {
-  background-color: var(--pink);
-}
-.yellowcolor {
-  background-color: var(--yellow);
-} */
-
 .addboardbuttonn {
   display: flex;
   justify-content: flex-end;
