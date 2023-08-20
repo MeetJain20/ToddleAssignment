@@ -104,7 +104,7 @@ const NavBar = (props) => {
                         </div>
                         <div className="savelogo" onClick={bookmarkHandler} >
                             {isbookmark ?
-                                <img src={Bookmark} alt="save_logo" /> : <img src={Savelogo} alt="save_logo" />}
+                                <img src={Bookmark} alt="save_logo" className="savepostss" /> : <img src={Savelogo} alt="save_logo" className="savepostss" />}
                         </div>
                     </div>
                 )}

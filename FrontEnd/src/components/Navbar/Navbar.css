@@ -154,3 +154,7 @@ input:focus {
 .search-input.active input {
   width: 200px;
 }
+
+.savepostss {
+  cursor: pointer;
+}
