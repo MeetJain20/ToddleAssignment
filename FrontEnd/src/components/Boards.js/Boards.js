@@ -16,7 +16,6 @@ const Boards = (props) => {
         state.board.find(board => board.boardid === boardid)
     );
 
-
     const [funccss, setFunccss] = useState("none");
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
