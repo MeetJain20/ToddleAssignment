@@ -20,7 +20,7 @@ const Dashboard = () => {
                     </div>
                     <div className="allboards">
                         {filteredBoards.map((board) => (
-                            <Boards boardid={board.boardid} color={board.color} name={board.title} postsArr={board.posts} />
+                            <Boards key={board.boardid} boardid={board.boardid} color={board.color} name={board.title} postsArr={board.posts} />
                         ))}
                     </div>
                 </div>
