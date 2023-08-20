@@ -7,9 +7,7 @@ The Digital Wall project is a web application that allows users to create and ma
 - [Getting Started](#getting-started)
 - [Basic Functionalities](#basic-functionalities)
 - [Bonus Functionalities](#bonus-functionalities)
-- [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
 
 ## Getting Started
 
