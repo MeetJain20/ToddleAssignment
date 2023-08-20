@@ -12,7 +12,7 @@ import AddNewPost from './AddNewPost';
 import Modal from '../ReUsable/Modal';
 
 
-const Postcard = ({ title, description, img, likecount, boardid, postid, bookmarked }) => {
+const Postcard = ({ title, description, img, likecount, boardid, postid, bookmarked, date }) => {
     const [flag, setFlag] = useState(1);
     const [flag1, setFlag1] = useState(1);
     const dispatch = useDispatch();
@@ -126,7 +126,7 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
                 </div>
             </div>
 
-            {/* <p className="post-muted-text">Muted Text</p> */}
+            <div className="post-muted-text">{date}</div>
             <div className="post-image">
                 <img src={img} alt="Post" />
             </div>

@@ -29,8 +29,16 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
     const boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === boardid)
     );
-    const addnewpostHandler = () => {
+    const formatDate = (dateString) => {
+        const options = { day: '2-digit', month: 'long' };
+        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+        const [month, day] = formattedDate.split(' ');
+        return `${day} ${month}`;
+    };
 
+    const addnewpostHandler = () => {
+        const today = new Date();
+        const formattedDate = formatDate(today);
         const existingMaxPostId = Math.max(...boardDetails.posts.map(post => post.id), 0);
         if (!postDetails) {
             const newPostId = existingMaxPostId + 1;
@@ -41,6 +49,7 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
                 description: description,
                 img: image1,
                 likecount: 0,
+                date: formattedDate,
                 bookmarked: false,
             };
 

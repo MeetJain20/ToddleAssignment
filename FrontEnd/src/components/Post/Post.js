@@ -19,6 +19,7 @@ const Post = () => {
     let boardDetails = useSelector(state =>
         state.board.find(board => board.boardid === values.boardid)
     );
+
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
@@ -71,13 +72,14 @@ const Post = () => {
                         {isbookmark ? <div className="postcarddetails">
                             {filteredPosts.filter(post => post.bookmarked).map((post) => {
                                 return (
-                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} bookmarked={post.bookmarked} />
+                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date}
+                                        bookmarked={post.bookmarked} />
                                 )
                             })}
                         </div> : <div className="postcarddetails">
                             {filteredPosts.map((post) => {
                                 return (
-                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} bookmarked={post.bookmarked} />
+                                    <Postcard boardid={values.boardid} postid={post.id} title={post.title} description={post.description} img={post.img} likecount={post.likecount} date={post.date} bookmarked={post.bookmarked} />
                                 )
                             })}
                         </div>}</>
