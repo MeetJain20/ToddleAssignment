@@ -133,7 +133,7 @@ const Postcard = ({ title, description, img, likecount, boardid, postid, bookmar
             <p className="post-description">{description}</p>
             <div className="linedivvv"></div>
             <div className="likebutton">
-                {flag ? <img src={Heartlogo} alt="heart_logo" onClick={likeHandler} /> : <img src={ColorHeart} alt="heart_logo" onClick={likeHandler} />}
+                {flag ? <img src={Heartlogo} alt="heart_logo" onClick={likeHandler} className="likebuttonheart" /> : <img src={ColorHeart} alt="heart_logo" onClick={likeHandler} className="likebuttonheart" />}
 
                 <div className="likecount" >
                     {likecount}
