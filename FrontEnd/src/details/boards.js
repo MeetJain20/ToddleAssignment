@@ -32,7 +32,7 @@ const BoardsDetail = [
             {
                 id: 1,
                 title: "First Post of second board",
-                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam est autem, aliquid inventore hic quae ipsa a aut molestiae error nulla numquam iusto, nihil exercitationem quidem reiciendis quam, eveniet odio? Fugit blanditiis placeat, praesentium labore qui soluta libero aperiam! Nisi, facilis velit! Maxime, voluptatum? Ea quidem rerum nisi iste obcaecati quod ut, magnam deleniti debitis? Fuga officiis, enim odio aliquam quibusdam tempore nesciunt est.",
+                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam est autem, aliquid inventore hic quae ipsa a aut molestiae error nulla numquam iusto, nihil exercitationem quidem reiciendis quam, eveniet odio? Fugit blanditiis placeat, praesentium labore qui soluta libero aperiam! Nisi.",
                 img: "https://thumbs.dreamstime.com/b/spring-nature-scene-beautiful-landscape-tranquil-background-sunlight-scenic-beauty-meadow-backdrop-sunshine-green-grass-149811995.jpg",
                 likecount: 0,
                 date: "27 July",
