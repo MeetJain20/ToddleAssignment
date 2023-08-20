@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Dashboard.css";
-import Boards from '../Boards.js/Boards';
+import Boards from '../Boards/Boards';
 import { useSelector } from 'react-redux';
 import NavBar from '../Navbar/Navbar';
 

@@ -4,7 +4,7 @@ import BrandLogo from "../../assets/Subtract.svg";
 import Addlogo from "../../assets/AddOutlined.svg";
 import Searchlogo from "../../assets/SearchOutlined.svg";
 import Modal from "../ReUsable/Modal";
-import AddNewBoard from "../Boards.js/AddNewBoard";
+import AddNewBoard from "../Boards/AddNewBoard";
 import Savelogo from "../../assets/Savelogo.svg";
 import Bookmark from "../../assets/Bookmark.svg";
 import Leftarrow from "../../assets/Leftarrow.svg";
