@@ -18,7 +18,6 @@ const boardReducer = (state = initialState, action) => {
         case 'EDIT_POST':
             const { boardId: editBoardId, postId: editPostId, title: newTitle, description: newDescription } = action.payload;
             return state.map(board => {
-                console.log(newTitle, newDescription);
                 if (board.boardid === editBoardId) {
                     const updatedPosts = board.posts.map(post => {
                         if (post.id === editPostId) {

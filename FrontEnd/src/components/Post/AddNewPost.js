@@ -39,7 +39,6 @@ const AddNewPost = ({ boardid, postid, type, closeModal, titlee, descriptionn })
         const existingMaxPostId = Math.max(...boardDetails.posts.map(post => post.id), 0);
         if (!postDetails) {
             const newPostId = existingMaxPostId + 1;
-            console.log("alwergerg", newPostId);
             const newPost = {
                 id: newPostId,
                 title: subject,
