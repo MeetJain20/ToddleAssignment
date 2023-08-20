@@ -2,16 +2,9 @@ import React, { useState } from 'react';
 import "./AddNewBoard.css";
 import BoardsDetail from '../../details/boards';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
-    const boardDetails = useSelector(state =>
-        state.board.find(board => board.boardid === boardid)
-    );
-
-    const [color, setColor] = useState(colorr);
-    const [title, setTitle] = useState(titlee);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const colorsArr = [
@@ -27,15 +20,24 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
         {
             color: "yellow",
         }
-    ]
+    ];
+
+    // Calculate the next available board ID
+    const boardDetails = useSelector(state =>
+        state.board.find(board => board.boardid === boardid)
+    );
+    const maxBoardId = useSelector(state =>
+        Math.max(...state.board.map(board => board.boardid), 0)
+    );
+    const nextAvailableBoardId = maxBoardId + 1;
+
+    const [color, setColor] = useState(colorr);
+    const [title, setTitle] = useState(titlee);
 
     const addnewboardHandler = () => {
-
-        const existingMaxBoardId = Math.max(...BoardsDetail.map(board => board.boardid), 0);
-
-        if (!boardDetails) {
+        if (!boardid) { // If no board ID is provided, it's a new board
             const newBoard = {
-                boardid: existingMaxBoardId + 1,
+                boardid: nextAvailableBoardId,
                 title: title,
                 color: color,
                 posts: [],
@@ -45,20 +47,17 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
                 type: 'ADD_NEW_BOARD',
                 payload: newBoard,
             });
-            setTitle("");
-            setColor("");
+
             const values = {
-                boardid: Object.keys(BoardsDetail).length + 1,
+                boardid: nextAvailableBoardId,
                 title: title,
                 color: color,
                 posts: []
             };
-            navigate("/post", { state: values })
-        }
-        else {
-
+            navigate("/post", { state: values });
+        } else { // If board ID is provided, it's an edit operation
             const newBoard = {
-                boardid: boardDetails.boardid,
+                boardid: boardid,
                 title: title,
                 color: color,
             };
@@ -69,7 +68,8 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
             });
         }
         closeModal();
-    }
+    };
+
     return (
         <div className="containerBoard">
             {titlee === "" ? <>
@@ -116,3 +116,4 @@ const AddNewBoard = ({ boardid, titlee, colorr, type, closeModal }) => {
 }
 
 export default AddNewBoard
+
